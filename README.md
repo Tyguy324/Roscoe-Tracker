@@ -20,7 +20,7 @@
 3. Emails summary automatically
 
 ## Sample Email Report
-![Roscoe Email Report](1000001895.jpg)
+![Roscoe Email Report](Screenshot_20260104_134316_Gmail.jpg).
 
 ## The Script
 ```javascript
