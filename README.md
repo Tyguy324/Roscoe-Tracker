@@ -1,41 +1,28 @@
-# Roscoe Tracker by TyGuy324
+# 🐶 Roscoe Tracker by TyGuy324
 
-A simple pet‑care tracker built in Google Sheets with Google Apps Script.  
-Logs Roscoe's food, walks, mood, and notes, then emails a daily summary report.
+**Personal pet care dashboard** built with Google Sheets + Apps Script. Tracks my dog Roscoe's daily food, walks, moods, and activities with automated email reports.
 
-## How it works
-- Data is entered in a Google Sheet (date, time, food cups, walk miles, mood, notes).
-- A Google Apps Script function reads recent rows and builds a summary.
-- The script emails a “Roscoe Update” report once a day.
+**Live demo**: [Roscoe Tracker (Google Sheets)](https://docs.google.com/spreadsheets/d/1PFj5bsFK9AizD56sdO9Ly4qjrvGPlMmWQ6DQ7suEf0c/edit?usp=drivesdk)
 
-## Technologies
-- Google Sheets
+## Features
+- Log food (cups), walks (miles), mood, notes
+- Brown theme (Roscoe's color! 🐕)
+- Daily email summary with totals
+- Simple data entry → automation pipeline
+
+## Tech Stack
+- Google Sheets (data entry)
 - Google Apps Script (JavaScript)
 
-## Script
+## How it works
+1. Enter data in sheet columns: Date | Time | Food_Cups | Walk_Miles | Mood | Notes
+2. Script reads recent rows, builds report
+3. Emails summary automatically
 
+## Sample Email Report
+![Roscoe Email Report](1000001895.jpg)
+
+## The Script
 ```javascript
-// Roscoe daily report script (Google Apps Script)
 function sendRoscoeReport() {
-  const sheet = SpreadsheetApp.getActiveSheet();
-  const data = sheet.getRange('A2:F' + sheet.getLastRow()).getValues();
-
-  let report = '🐶 Roscoe Report – TyGuy324 Edition 🐶
-
-';
-  let totalFood = 0, totalWalks = 0;
-
-  data.forEach(row => {
-    if (row) {
-      report += `Date: ${row[0]} | Time: ${row[1]} | Food: ${row[2]} cups | Walk: ${row[3]} mi | Mood: ${row[4]} | Notes: ${row[5]}
-`;
-      totalFood += Number(row[2]) || 0;
-      totalWalks += Number(row[3]) || 0;
-    }
-  });
-
-  report += `
---- TOTALS --- Food: ${totalFood} cups | Walks: ${totalWalks} miles. Good boy! 🐾`;
-
-  MailApp.sendEmail('Innoutdabox@gmail.com, 'Roscoe Update', report);
-}
+  const sheet
